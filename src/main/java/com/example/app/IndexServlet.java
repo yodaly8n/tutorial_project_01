@@ -9,8 +9,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.ocpsoft.prettytime.PrettyTime;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.Locale;
 
 @WebServlet("/index")
 public class IndexServlet extends HttpServlet {
@@ -18,9 +21,9 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if(req.getSession().getAttribute("logonUser") == null) {
+        if (req.getSession().getAttribute("logonUser") == null) {
             req.setAttribute("auth", false);
-        }else {
+        } else {
             req.setAttribute("auth", true);
         }
 
