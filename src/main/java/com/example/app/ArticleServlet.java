@@ -22,6 +22,7 @@ public class ArticleServlet extends HttpServlet {
             return;
         }
         SqlSession sqlSession = MyBatisUtil.build().openSession(true);
+        sqlSession.update("mappers.ArticleMapper.updateViewCnt", Integer.parseInt(no) );
         Article found = sqlSession.selectOne("mappers.ArticleMapper.selectByNo", Integer.parseInt(no) );
         if(found == null) {
             resp.sendRedirect("/community");
@@ -32,8 +33,5 @@ public class ArticleServlet extends HttpServlet {
         req.setAttribute("auth", req.getSession().getAttribute("logonUser") != null);
         req.setAttribute("article", found);
         req.getRequestDispatcher("/article.jsp").forward(req, resp);
-
-
-
     }
 }
