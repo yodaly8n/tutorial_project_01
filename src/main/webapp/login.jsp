@@ -33,6 +33,14 @@
                     </div>
                 </div>
                 <div>
+                    <div class="mt-1" style="display: flex; justify-content: space-between">
+                        <label for="keepLogin">
+                            <small>로그인 상태 유지</small>
+                        </label>
+                        <input type="checkbox" name="keepLogin" id="keepLogin" onchange="keepLoginConfirm();"/>
+                    </div>
+                </div>
+                <div>
                     <button id="loginBt" class="bt-submit" disabled>로그인</button>
                 </div>
             </form>
@@ -42,6 +50,14 @@
         </div>
     </div>
     <script>
+        function keepLoginConfirm() {
+            if(document.getElementById("keepLogin").checked) {
+                if(!window.confirm("공용PC에서는 보안상의 문제가 발생할 수 있습니다.")) {
+                    document.getElementById("keepLogin").checked= false;
+                }
+            }
+        }
+
         function updateButtonState() {
             const idValue = document.getElementById("id").value;
             const passValue = document.getElementById("password").value;

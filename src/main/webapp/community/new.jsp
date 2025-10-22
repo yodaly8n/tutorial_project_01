@@ -55,7 +55,7 @@
                      style="display: flex; justify-content: space-between">
                     <button type="reset" class="button">취소</button>
                     <button type="submit" class="button"
-                            style="background-color: royalblue; color: whitesmoke">등록
+                            style="background-color: royalblue; color: whitesmoke">작성
                     </button>
                 </div>
             </form>
