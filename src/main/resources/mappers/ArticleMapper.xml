@@ -8,7 +8,7 @@
         values(#{writerId}, #{topic}, #{title}, #{content})
     </insert>
     <select id="selectAll" resultType="Article">
-        select * from article
+        select * from article order by wroteAt desc
     </select>
     <select id="selectByTopic" resultType="Article" parameterType="string">
         select * from article where topic=#{topic}

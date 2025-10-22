@@ -24,6 +24,6 @@ public class Article {
 
     public String getPrettyWroteAt( ) {
         PrettyTime p = new PrettyTime(Locale.KOREAN);
-        return p.format(this.wroteAt.plusHours(9));
+        return p.format(this.wroteAt);
     }
 }
