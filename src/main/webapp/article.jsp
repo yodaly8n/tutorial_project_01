@@ -28,9 +28,11 @@
                     <span>${article.prettyWroteAt}</span>&middot;
                     <span>👁${article.viewCnt}</span>
                 </div>
-                <div>
-                    <button>📌</button>
-                </div>
+                <c:if test="${owner}">
+                    <div>
+                        <a href="/article/delete?no=${article.no}"><button>삭제</button></a>
+                    </div>
+                </c:if>
             </div>
             <div>
                 <h2><c:out value="${article.title}"/></h2>
@@ -38,7 +40,7 @@
             <div style="white-space: pre-line">
                 <c:out value="${article.content}"/>
             </div>
-            <div>
+            <div style="padding : 1.25rem 0rem">
                 <button onclick="reactionHandle(${auth});">
                     ${alreadyLike ? '🧡' : '🤍'}
                     &nbsp;${article.likeCnt}

@@ -39,7 +39,13 @@ public class ArticleServlet extends HttpServlet {
             int cnt = sqlSession.selectOne("mappers.ArticleLikeMapper.countByMemberIdAndArticleNo", map);
             req.setAttribute("alreadyLike", cnt == 1);
         }
-
+        // 제어메뉴를 보이게 할껀지 아닌지도 설정
+        if(logonUser == null || !found.getWriterId().equals(logonUser.getId()) ) {
+            req.setAttribute("owner", false);
+        }else {
+            req.setAttribute("owner", true);
+        }
+        
         sqlSession.close();
 
         req.setAttribute("auth", req.getSession().getAttribute("logonUser") != null);
