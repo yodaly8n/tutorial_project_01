@@ -16,7 +16,14 @@
 <%@ include file="/template/header.jspf" %>
 <div class="main">
     <div style="flex:1">
-        -- 유저목록 --
+        <h4>에디터초이스</h4>
+        <ul>
+            <c:forEach var="one" items="${top5Likes}">
+                <li style="font-size: small">
+                    <a href="/article?no=${one.no}">${one.title}</a>
+                </li>
+            </c:forEach>
+        </ul>
     </div>
     <div style="flex:4">
         <!-- 베너 -->
