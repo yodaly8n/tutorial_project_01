@@ -10,6 +10,14 @@
     <select id="selectAll" resultType="Article">
         select * from article order by wroteAt desc
     </select>
+    <select id="countAll" resultType="int">
+        select count(*) from article
+    </select>
+    <select id="selectByOffset" resultType="Article" parameterType="int">
+        select * from article order by wroteAt desc limit 10 offset #{offset}
+    </select>
+
+
     <select id="selectByTopic" resultType="Article" parameterType="string">
         select * from article where topic=#{topic}
     </select>

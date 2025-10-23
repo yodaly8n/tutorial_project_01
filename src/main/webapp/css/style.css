@@ -101,6 +101,16 @@ body {
     color : #79c0f8;
 }
 
+.active-page-link {
+    color : #79c0f8;
+    font-weight: bold;
+    text-decoration: none;
+}
+.page-link {
+    color : #3f3f3f;
+    text-decoration: none;
+}
+
 
 .input {
     width: 100%;
