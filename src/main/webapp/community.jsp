@@ -64,6 +64,16 @@
                 >${i}</a>
             </c:forEach>
         </div>
+        <!-- 검색 영역 -->
+        <div style="padding : 0.5rem 0rem; text-align: center">
+            <form action="/community">
+                <input type="text" name="keyword" class="input" style="width: 200px"
+                       placeholder="커뮤니티 내에서 검색"
+                       value="${keyword}"
+                />
+            </form>
+
+        </div>
     </div>
     <div style="flex:1">
         -- 인기글 --
