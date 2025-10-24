@@ -1,6 +1,7 @@
 package com.example.app;
 
 import com.example.app.model.Article;
+import com.example.app.model.Comment;
 import com.example.app.model.Member;
 import com.example.app.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet("/article")
@@ -45,8 +47,14 @@ public class ArticleServlet extends HttpServlet {
         }else {
             req.setAttribute("owner", true);
         }
-        
+
+
+        List<Comment> comments
+                =sqlSession.selectList("mappers.CommentMapper.selectByArticleNo", Integer.parseInt(no));
+        req.setAttribute("comments", comments);
+
         sqlSession.close();
+
 
         req.setAttribute("auth", req.getSession().getAttribute("logonUser") != null);
         req.setAttribute("article", found);

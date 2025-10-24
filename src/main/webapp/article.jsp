@@ -30,8 +30,12 @@
                 </div>
                 <c:if test="${owner}">
                     <div>
-                        <a href="/article/edit?no=${article.no}"><button>수정</button></a>
-                        <a href="/article/delete?no=${article.no}"><button>삭제</button></a>
+                        <a href="/article/edit?no=${article.no}">
+                            <button>수정</button>
+                        </a>
+                        <a href="/article/delete?no=${article.no}">
+                            <button>삭제</button>
+                        </a>
                     </div>
                 </c:if>
             </div>
@@ -51,20 +55,40 @@
                 </form>
             </div>
         </div>
-        <!-- 댓글 영역 -->
+        <!-- 댓글 폼영역 -->
         <div>
-
+            <form action="/article/comment" method="post">
+                <input type="hidden" name="articleNo" value="${article.no}"/>
+                <c:choose>
+                    <c:when test="${auth}">
+                        <textarea placeholder="댓글을남겨주세요" name="content"></textarea>
+                        <button>댓글등록</button>
+                    </c:when>
+                    <c:otherwise>
+                        <textarea placeholder="로그인이 필요한 기능이 필요한 기능입니다." readonly></textarea>
+                        <button disabled>댓글등록</button>
+                    </c:otherwise>
+                </c:choose>
+            </form>
+        </div>
+        <!-- 댓글 찍어주는 영역 -->
+        <div>
+            <c:forEach items="${comments}" var="one">
+                <p>
+                    ${one.writerId} - ${one.content} <small>${one.commentedAt}</small>
+                </p>
+            </c:forEach>
         </div>
     </div>
     <div style="flex:1"></div>
 </div>
 <script>
     function reactionHandle(flag) {
-        if(!flag) {
-            if(window.confirm("로그인이 필요한 기능입니다. 로그인 페이지로 이동하시겠습니까?")) {
-                location.href="/login";
+        if (!flag) {
+            if (window.confirm("로그인이 필요한 기능입니다. 로그인 페이지로 이동하시겠습니까?")) {
+                location.href = "/login";
             }
-        }else {
+        } else {
             document.getElementById("reactionForm").submit();
         }
     }

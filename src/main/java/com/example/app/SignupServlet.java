@@ -40,10 +40,10 @@ public class SignupServlet extends HttpServlet {
         member.setNickname(nickname);
         member.setInterest(interest);
         member.setAgree(agree);
-        SqlSession sqlSession = MyBatisUtil.build().openSession(false);
+        SqlSession sqlSession = MyBatisUtil.build().openSession(true);
         int r = 0;
         if (id.matches("[a-z0-9]{4,15}")
-                && password.matches("(?=.*[a-z])(?=.*[0-9])[a-z0-9]{6,}")) {
+                && password.matches("(?=.*[a-z])(?=.*[0-9])[a-z0-9A-Z!@#$%]{6,}")) {
             Member found1 =
                     sqlSession.selectOne("mappers.MemberMapper.selectById", id);
             Member found2 =
