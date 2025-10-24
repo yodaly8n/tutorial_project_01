@@ -1,6 +1,7 @@
 package com.example.app;
 
 import com.example.app.model.Article;
+import com.example.app.model.WriteCounter;
 import com.example.app.util.MyBatisUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -39,14 +40,16 @@ public class CommunityServlet extends HttpServlet {
 
         // int count = sqlSession.selectOne("mappers.ArticleMapper.countAll");
         int count = sqlSession.selectOne("mappers.ArticleMapper.countLikeKeyword"
-                                                                        ,"%"+keyword+"%");
+                , "%" + keyword + "%");
         int lastPage = count / 10 + (count % 10 > 0 ? 1 : 0);
 
         List<Article> top5Likes =
-            sqlSession.selectList("mappers.ArticleMapper.selectTop5Likes", LocalDate.now().minusDays(7));
-
+                sqlSession.selectList("mappers.ArticleMapper.selectTop5Likes", LocalDate.now().minusDays(7));
+        List<WriteCounter> top5Writer
+                = sqlSession.selectList("mappers.ArticleMapper.selectTop5Writer");
 
         req.setAttribute("top5Likes", top5Likes);
+        req.setAttribute("top5Writer", top5Writer);
         req.setAttribute("articles", articles);
         req.setAttribute("lastPage", lastPage);
         req.setAttribute("page", page);

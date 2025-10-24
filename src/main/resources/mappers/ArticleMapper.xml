@@ -33,6 +33,10 @@
         order by likeCnt desc limit 5
     </select>
 
+    <select id="selectTop5Writer" resultType="writeCounter">
+        select writerId, count(*) as writeCnt from article
+        group by writerId order by writeCnt desc limit 5
+    </select>
 
 
     <select id="selectByTopic" resultType="Article" parameterType="string">
@@ -44,6 +48,10 @@
     <update id="updateViewCnt" parameterType="int">
         update article set viewCnt=viewCnt+ 1 where no=#{no}
     </update>
+    <update id="updateViewCnt" parameterType="int">
+        update article set viewCnt=viewCnt+ 1 where no=#{no}
+    </update>
+
     <update id="increaseLikeCnt" parameterType="int">
         update article set likeCnt=likeCnt+ 1 where no=#{no}
     </update>
