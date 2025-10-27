@@ -37,8 +37,6 @@
         select writerId, count(*) as writeCnt from article
         group by writerId order by writeCnt desc limit 5
     </select>
-
-
     <select id="selectByTopic" resultType="Article" parameterType="string">
         select * from article where topic=#{topic}
     </select>

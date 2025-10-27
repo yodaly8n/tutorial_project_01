@@ -15,4 +15,16 @@
         select * from member where nickname=#{nickname}
     </select>
 
+    <update id="updateOne" parameterType="member">
+        update member
+            set name=#{name}, nickname=#{nickname}, email=#{email}, interest=#{interest}
+        where id=#{id}
+    </update>
+
+    <update id="updatePassword" parameterType="updatePassword">
+        update member set password=#{password} where id=#{id}
+    </update>
+    <delete id="deleteById" parameterType="string" >
+        delete from member where id=#{id}
+    </delete>
 </mapper>

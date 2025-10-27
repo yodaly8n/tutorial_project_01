@@ -26,4 +26,13 @@
     <select id="selectByMemberIdAndArticleNo" resultType="articleLike" parameterType="articleLike">
         select * from articleLike where memberId=#{memberId} and articleNo=#{articleNo}
     </select>
+
+    <select id="selectLikedArticlesByMemberId"
+            parameterType="string" resultType="LikedArticle" >
+        select * from
+            articleLike join article
+        on  article.no = articleLike.articleNo
+            where articleLike.memberId = #{id}
+    </select>
+
 </mapper>
