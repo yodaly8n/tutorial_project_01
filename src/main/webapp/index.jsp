@@ -15,7 +15,9 @@
 <body>
 <%@ include file="/template/header.jspf"%>
 <div>
-    메인영역 - (진행중)
+    <h2>대문</h2>
+    <h2>대문</h2>
+    <h2>대문</h2>
 </div>
 </body>
 </html>
