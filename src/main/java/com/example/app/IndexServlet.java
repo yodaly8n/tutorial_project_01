@@ -22,6 +22,8 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        req.getSession();
+
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }
